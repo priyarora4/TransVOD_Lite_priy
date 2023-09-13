@@ -267,10 +267,10 @@ def main(args):
             else:
                 tmp_dict = checkpoint['model']
                 for name, param in model_without_ddp.named_parameters():
-	                if ('temp' in name):
-	                    param.requires_grad = True
-	                else:
-	                    param.requires_grad = False
+                    if ('temp' in name):
+                        param.requires_grad = True
+                    else:
+                        param.requires_grad = False
             missing_keys, unexpected_keys = model_without_ddp.load_state_dict(tmp_dict, strict=False)
 
         unexpected_keys = [k for k in unexpected_keys if not (k.endswith('total_params') or k.endswith('total_ops'))]
